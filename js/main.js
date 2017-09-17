@@ -1,37 +1,39 @@
 $(document).ready(function() {
-  var squares = 16
-  // 16 rows with 16 divs
-  for (var i = 0; i < squares; i++) {
-    var row = $('<div class="grid-rows"></div>')
-    row.appendTo('#container')
-    for (var b = 0; b < squares; b++) {
-      var grid = $("<div class='grid-unit'></div>");
-      grid.appendTo('.grid-rows:last-child');
+  enterSquares(16);
+  reset();
+
+// Creates number of squares
+  function enterSquares(squares) {
+    var dimension = 400 / squares;
+    var area = squares * squares;
+
+    for (var i = 0; i < area; i++) {
+      var row = $('<div class="grid-unit"></div>')
+      row.appendTo('#container')
     }
+
+    $('.grid-unit').css({ "width": dimension, "height": dimension});
+    hover();
   }
 
-  // changes squares to dark grey on mouse enter
-  darkGrey = $('.grid-unit').on('mouseenter', function() {
-    $(this).addClass('dark-grey');
-  });
 
   // Prompt button
-  $('#clr-btn').on('click', function() {
-    var userInput = prompt('How many squares per side?');
-    var squares = parseInt(userInput);
-    $('.grid-rows').remove();
-    for (var i = 0; i < squares; i++) {
-      var row = $('<div class="grid-rows"></div>')
-      row.appendTo('#container')
-      for (var b = 0; b < squares; b++) {
-        var grid = $("<div class='grid-unit'></div>");
-        grid.appendTo('.grid-rows:last-child');
-      }
-    }
+  function reset() {
+    $('#clr-btn').on('click', function() {
+      var userInput = prompt("How many squares per side?");
+      var input = parseInt(userInput);
+      $('#container').empty();
+      enterSquares(input);
+      hover();
+    })
+  }
 
-    $('.grid-unit').on('mouseenter', function() {
+
+  // changes squares to dark grey on mouse enter
+  function hover() {
+    darkGrey = $('.grid-unit').on('mouseenter', function() {
       $(this).addClass('dark-grey');
     });
+  };
 
-  });
 });
