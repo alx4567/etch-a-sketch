@@ -1,0 +1,15 @@
+.grid-rows {
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  float: left;
+}
+
+.grid-unit {
+  width: 10px;
+  height: 10px;
+  background-color: #eee;
+  float: left;
+  margin: 1px;
+  padding: 0;
+}
