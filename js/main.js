@@ -52,14 +52,8 @@ function randomize() {
 // Increase opacity
 function overlayGrey() {
   $('#overlay-grey').on('click', function() {
-    var r = Math.floor(Math.random() * 250);
-    var g = Math.floor(Math.random() * 250);
-    var b = Math.floor(Math.random() * 250);
-    var opacity = 0.1;
-    var randomColor = 'rgba(' + r + ',' + g +',' + b + ',' + opacity + ')';
-
-    $('.grid-unit').on('mouseover', function() {
-      $(this).css('background-color', randomColor);
+    $('.grid-unit').hover( function() {
+      $(this).css({'background-color':'black', 'opacity': '+=0.1'});
     });
   });
-};
+}
