@@ -2,6 +2,7 @@ $(document).ready(function() {
   enterSquares(16);
   reset();
   randomize();
+  overlayGrey();
 });
 
 // Creates number of squares
@@ -10,8 +11,7 @@ function enterSquares(squares) {
   var area = squares * squares;
 
   for (var i = 0; i < area; i++) {
-    var row = $('<div class="grid-unit"></div>')
-    row.appendTo('#container')
+    $('<div class="grid-unit"></div>').appendTo('#container')
   }
 
   $('.grid-unit').css({ "width": dimension, "height": dimension});
@@ -41,12 +41,24 @@ function hover() {
 //changes color of squares
 function randomize() {
   $('#randomize').on('click', function() {
+    $('.grid-unit').hover( function() {
+      var randomColor = 'rgb(' + Math.floor(Math.random() * 250) + ', ' + Math.floor(Math.random() * 250) + ', ' + Math.floor(Math.random() * 250) + ')';
+      $(this).css('background-color', randomColor);
+    });
+  });
+};
+
+
+// Increase opacity
+function overlayGrey() {
+  $('#overlay-grey').on('click', function() {
     var r = Math.floor(Math.random() * 250);
     var g = Math.floor(Math.random() * 250);
     var b = Math.floor(Math.random() * 250);
-    var randomColor = 'rgb(' + r + ', ' + g + ', ' + b + ')'
+    var opacity = 0.1;
+    var randomColor = 'rgba(' + r + ',' + g +',' + b + ',' + opacity + ')';
 
-    $('.grid-unit').hover( function() {
+    $('.grid-unit').on('mouseover', function() {
       $(this).css('background-color', randomColor);
     });
   });
